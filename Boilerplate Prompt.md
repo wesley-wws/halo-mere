@@ -38,10 +38,10 @@
 
 - **Boilerplate.Domain**：领域层  
   包含实体基类、聚合根、值对象接口、领域事件基类、仓储接口等。  
-  > 接口定义建议：
-  > - **IEntity, IAggregateRoot, IValueObject**：如果需要跨项目复用或测试隔离，建议定义。
-  > - 评估接口是否增加解耦或测试便利性，避免不必要的复杂度。
-  > - 参考 DDD 和 ABP 的最佳实践，保持清晰建模语义。
+  接口定义建议：
+  - **IEntity, IAggregateRoot, IValueObject**：如果需要跨项目复用或测试隔离，建议定义。
+  - 评估接口是否增加解耦或测试便利性，避免不必要的复杂度。
+  - 参考 DDD 和 ABP 的最佳实践，保持清晰建模语义。
 
 - **Boilerplate.Application**：应用层  
   包含应用服务接口、CQRS 抽象（命令/查询/处理器）、DTO 接口等。
