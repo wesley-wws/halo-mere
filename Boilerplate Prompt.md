@@ -3,69 +3,6 @@
 
 请帮我生成一个基于 .NET 8 的分层架构项目，项目名称为 `Boilerplate`，参考 ABP vNext 的模块化思想，结合六边形架构（Hexagonal Architecture）原则。要求将基础框架项目与具体业务项目分离，以提升复用性和解耦性。
 
-## 目录结构与项目划分
-
-### 命名空间与目录建议
-
-命名空间应与物理目录结构一致：
-
-``` bash
-/framework
-├── Boilerplate.Domain
-├── Boilerplate.Application
-├── Boilerplate.Infrastructure
-├── Boilerplate.Contract
-├── ...
-└── Boilerplate.Shared
-
-/samples/OrderService
-├── OrderService.Domain
-├── OrderService.Application
-├── OrderService.Infrastructure
-├── OrderService.Contract
-├── ...
-└── OrderService.WebApi
-```
-
-命名空间示例：
-
-- 框架项目：`Boilerplate.Domain`, `Boilerplate.Application`  
-- Sample 项目：`OrderService.Domain`, `OrderService.Application`  
-
-### 1. /framework - 通用基础类库（可复用）
-
-该目录包含所有领域抽象、应用抽象、通用基础设施实现、共享内核，**不包含任何具体业务逻辑**，可以被多个业务项目引用：
-
-- **Boilerplate.Domain**：领域层  
-  包含实体基类、聚合根、值对象接口、领域事件基类、仓储接口等。  
-  接口定义建议：
-  - **IEntity, IAggregateRoot, IValueObject**：如果需要跨项目复用或测试隔离，建议定义。
-  - 评估接口是否增加解耦或测试便利性，避免不必要的复杂度。
-  - 参考 DDD 和 ABP 的最佳实践，保持清晰建模语义。
-
-- **Boilerplate.Application**：应用层  
-  包含应用服务接口、CQRS 抽象（命令/查询/处理器）、DTO 接口等。
-
-- **Boilerplate.Infrastructure**：通用基础设施实现  
-  包含通用仓储基类、MediatR 分发器、工作单元接口实现等。
-
-- **Boilerplate.Shared**：共享内核  
-  包含通用异常、标记接口、分页、排序枚举、规范接口等。
-
-- **Boilerplate.Contract**：契约层  
-  定义框架级别的接口、数据传输对象（DTOs）、枚举常量、事件、验证和特性等，以实现模块化和松耦合。
-
-### 2. /samples/OrderService - 示例业务服务模块（可扩展）
-
-该目录是示例业务模块，**引用 framework 中的抽象定义并完成具体实现**：
-
-- **OrderService.Shared**: 共享部分
-- **OrderService.Contract**：定义业务逻辑相关的接口、数据传输对象（DTOs）、枚举常量、事件、验证和特性等，以实现模块化和松耦合。  
-- **OrderService.Domain**：订单聚合与领域逻辑  
-- **OrderService.Application**：订单用例与命令查询逻辑  
-- **OrderService.Infrastructure**：订单数据库与仓储实现  
-- **OrderService.WebApi**：暴露 API 接口，配置启动项  
-
 ## 架构与设计原则
 
 ### 模块化 & 六边形架构
@@ -79,6 +16,11 @@
 - 所有代码需分层合理，**不能跨层访问非接口定义的实现**。
 - 所有交互应通过抽象接口 + 依赖注入进行。
 
+### 接口定义建议
+
+- 评估接口是否增加解耦或测试便利性，避免不必要的复杂度。
+- 参考 DDD 和 ABP 的最佳实践，保持清晰建模语义。
+
 ## 技术要求
 
 ### CQRS 与事件驱动
@@ -86,6 +28,88 @@
 - 所有命令/查询使用 MediatR 的 `IRequestHandler`。
 - 所有领域事件处理使用 `INotificationHandler`。
 - 命令与查询处理应分离为不同的类，符合 CQRS 架构风格。
+
+### 数据库 ORM
+
+- 使用 EF core 和 dapper 分别实现数据库访问示例项目的数据库访问，可以通过依赖注入进行切换。
+
+## 项目划分与目录结构
+
+### 项目分为通用基础类库和实例项目两部分
+
+#### /framework - 通用基础类库（可复用）
+
+该目录**不包含任何具体业务逻辑**，可以被多个业务项目引用：
+
+- **Boilerplate.Domain.Shared**：领域层
+
+  这个项目包含了一些常量、枚举和其他对象，它们实际上属于领域层的一部分，但由于需要被解决方案中的所有层/项目使用，因此被单独提取出来。该项目不依赖于解决方案中的其他项目，而其他所有项目都直接或间接依赖于它。
+  
+- **Boilerplate.Domain**：领域层
+
+  包含实体基类（接口）、聚合根基类（接口）、值对象基类（接口）、领域服务基类（接口）、领域事件基类（接口）、仓储接口等。
+
+  对于**实体, 聚合根, 值对象**等，如果需要跨项目复用或测试隔离，建议除了定义基类之外，同时定义对应的接口。
+  依赖于 `.Domain.Shared` ，因为该项目中定义了常量、枚举和其他对象，当前项目需要使用它们。
+
+- **Boilerplate.App.Contract**：应用层
+
+  该项目主要包含应用层的应用服务接口和数据传输对象（DTO）。其目的是将应用层的接口与实现分离，从而可以将该接口项目作为契约包共享给客户端使用。
+  
+  该项目依赖于 `.Domain.Shared`，因为在应用服务接口和 DTO 中可能会使用该项目中定义的常量、枚举和其他共享对象。
+  
+- **Boilerplate.App**：应用层
+
+  该项目包含了在 `.App.Contracts` 项目中定义的应用服务接口的具体实现。 
+
+  该项目依赖于 `.Application.Contracts` ，以便实现其中定义的接口并使用其 DTO。
+
+  同时也依赖于 `.Domain` ，以便在执行业务逻辑时使用领域对象（如实体、仓储接口等）。
+
+- **Boilerplate.Infra**：通用基础设施实现  
+  包含通用仓储基类、MediatR 分发器、CQRS 抽象（命令/查询/处理器）,工作单元接口实现等。
+
+#### /samples/OrderService - 示例业务服务模块
+
+该目录是示例业务模块，**引用 framework 中的抽象定义并完成具体实现**：
+
+- **OrderService.Domain.Shared**: 共享部分
+- **OrderService.App.Contract**：定义业务逻辑相关的接口、数据传输对象（DTOs）、枚举常量、事件、验证和特性等，以实现模块化和松耦合。  
+- **OrderService.Domain**：订单聚合与领域逻辑  
+- **OrderService.App**：订单用例与命令查询逻辑  
+- **OrderService.Infra**：订单数据库与仓储实现  
+- **OrderService.WebApi**：暴露 API 接口，配置启动项  
+
+### 命名空间与目录建议
+
+命名空间应与物理目录结构一致：
+
+``` bash
+src/framework
+├── Boilerplate.Domain
+├── Boilerplate.Domain.Shared
+├── Boilerplate.App
+├── Boilerplate.App.Contract
+├── ...
+└── Boilerplate.Infra
+
+src/samples/OrderService
+├── OrderService.Domain
+├── OrderService.Domain.Shared
+├── OrderService.App
+├── OrderService.App.Contract
+├── OrderService.Infra
+├── ...
+└── OrderService.WebApi
+
+src
+└── Boilerplate.sln
+```
+
+命名空间示例：
+
+- 框架项目：`Boilerplate.Domain`, `Boilerplate.App`  
+- Sample 项目：`OrderService.Domain`, `OrderService.App`  
 
 ## 示例模块内容 - OrderService
   
