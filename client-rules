@@ -9,7 +9,7 @@ ovierview
 
 coding standard
 
-# Coding Standard
+# Coding Standard for C#
 
 ## Naming Conventions
 
@@ -43,7 +43,8 @@ coding standard
 
 - Prefer composition over inheritance.
 - Prefer file-scoped namespace.
-- Prefer using namespace in the top.
+- Prefer using namespace at the top.
+- A separate file for each class.
 - Separate logical code groups with blank lines
 - Ensure consistent parameter order in method overloading
 - Return empty collections, not null
