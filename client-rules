@@ -72,6 +72,7 @@ coding standard
 - Preserve call stack when re-throwing exceptions, `throw` instead of `throw ex`
 - Avoid empty catch blocks
 - Set `innerException` when throwing exceptions
+- Throw correct exception instead of 'NotImplementedException'
 
 ## Class Structure Organization
 
