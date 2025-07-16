@@ -1,3 +1,5 @@
 # Unit Test
 - Unit tests need to include corresponding comments to explain the purpose of each test case.
 - MethodName_StateUnderTest_ExpectedBehavior as a unit test case naming convention.
+- Mocking/stubbing is used as needed for dependencies; choose the appropriate libraries for mocking/stubbing dependencies.
+- The Arrange-Act-Assert pattern is used for clarity and maintainability.
