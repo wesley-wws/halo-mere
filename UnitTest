@@ -1,0 +1,3 @@
+# Unit Test
+- Unit tests need to include corresponding comments to explain the purpose of each test case.
+- MethodName_StateUnderTest_ExpectedBehavior as a unit test case naming convention.
