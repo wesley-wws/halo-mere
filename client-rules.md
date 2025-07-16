@@ -28,6 +28,7 @@ coding standard
 - Avoid Hungarian Notation and redundant prefixes/suffixes
 - Include the design-pattern names such as “Bridge”, “Adapter”, or “Factory” as a suffix to class names where appropriate.
 - Prefix boolean variables with "Can", "Is", or "Has"
+- Prefer MethodName_StateUnderTest_ExpectedBehavior as unit test case naming convention
 
 ## Documentation and Comments
 
