@@ -6,6 +6,7 @@ First, after I make a request, specify which classes you need to write unit test
 Then, follow the following requirements to carefully analyze the target classes and the codebase. Only proceed to the next step once you have analyzed the codebase fully.
 - Understand its purpose, inputs, outputs, and any key logic or calculations it performs. 
 - Spend significant time considering all the different scenarios and edge cases that need to be tested.
+- If you find existing test cases for the target class, ask me whether you should refer to their design.
 - Questions and seek clarification for better code understanding, if you need any more information.
 
 Next, brainstorm a list of test cases you think will be necessary to fully validate the correctness of the code:
