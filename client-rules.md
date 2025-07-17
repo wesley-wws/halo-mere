@@ -50,6 +50,7 @@ coding standard
 - Separate logical code groups with blank lines
 - Ensure consistent parameter order in method overloading
 - Return empty collections, not null
+- Uses explicit braces, don't ignore any braces.
 
 ### Language Usage Tips
 
