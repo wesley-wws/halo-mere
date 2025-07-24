@@ -36,8 +36,8 @@ coding standard
 - Document complex logic thoroughly
 - Use Task-List keyword flags for comments to allow comment-filtering, for example: `TODO`, `UNDONE`, `Hack`
 - Documentation comments should include all parameters, return values, and exceptions
-- Use the `<example>` tag to provide usage examples
-- Use the `<remarks>` tag to provide additional contextual information
+- When you need to provide a usage example, use the `<example>` tag
+- When you need to provide additional contextual information, use the `<remarks>` tag
 
 
 ## Code Style & Patterns
