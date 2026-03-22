@@ -11,8 +11,8 @@
     {
       "name": "halo-mere",
       "source": {
-        "source": "github",
-        "repo": "wesley-wws/halo-mere"
+        "source": "url",
+        "url": "https://github.com/wesley-wws/halo-mere"
       },
       "description": "Personal workflow toolkit — lightweight, flexible.",
       "version": "0.2.0",

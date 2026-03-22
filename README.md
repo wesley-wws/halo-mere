@@ -39,7 +39,7 @@ In any Claude Code session, run:
 ### Step 2 — Install the plugin
 
 ```
-/plugin install halo-mere@halo-mere
+/plugin install halo-mere@wesley
 ```
 
 Or use the interactive UI: run `/plugin`, go to the **Discover** tab, and select `halo-mere`.
