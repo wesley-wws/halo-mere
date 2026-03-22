@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "halo-mere",
-      "source": ".",
+      "source": "https://github.com/wesley-wws/halo-mere",
       "description": "Personal workflow toolkit — lightweight, flexible.",
       "version": "0.1.0",
       "author": {
