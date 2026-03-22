@@ -7,7 +7,7 @@ description: Provides principles and formatting rules for structured, precise wr
 
 ## Principles
 
-Before structuring, identify the output type and the reader's goal — this determines which structural patterns apply. Ordered by scope: structural principles (1–4) govern how content is organized; precision principles (5–7) govern how language is used.
+Before structuring, identify the output type and the reader's goal — this determines which structural patterns apply. Ordered by scope: structural principles (1–4) govern how content is organized; precision principles (5–8) govern how language is used.
 
 ### 1. Lead with What Matters Most
 
@@ -52,6 +52,14 @@ Clearly distinguish:
 - **Decision**: what has been agreed
 - **Recommendation**: what is suggested but not yet decided
 - **Open question**: what still needs resolution
+
+### 8. Specific over General
+Use concrete data, names, and measurements instead of qualifiers. Specific language is simultaneously more precise and more concise — it eliminates the need for hedging or disambiguation.
+
+- Weak: "significantly improved response time"
+- Strong: "P99 latency dropped from 200ms to 120ms"
+
+Corollary: one claim per sentence. Two assertions in one sentence dilute both.
 
 ## Formatting Rules
 
