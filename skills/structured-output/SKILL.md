@@ -7,18 +7,26 @@ description: Provides principles and formatting rules for structured, precise wr
 
 ## Principles
 
-Ordered by scope: structural principles (1–4) govern how content is organized; precision principles (5–7) govern how language is used.
+Before structuring, identify the output type and the reader's goal — this determines which structural patterns apply. Ordered by scope: structural principles (1–4) govern how content is organized; precision principles (5–7) govern how language is used.
 
-### 1. Conclusion First
-Open with the core finding, decision, or recommendation — one sentence. The reader should know the point before the supporting detail. When using a template (see Templates section), the template's structure takes precedence.
+### 1. Lead with What Matters Most
 
-### 2. Top-Down Hierarchy
-Each heading states the conclusion of its section, not just its topic.
+Put the most important information first. What that means depends on context:
 
-- Weak: `## Performance` followed by performance details
-- Strong: `## Performance is the primary bottleneck` followed by supporting evidence
+- **Analytical / decision**: open with the conclusion or recommendation
+- **Instructional / tutorial**: open with what this enables, or the first required action
+- **Reference / lookup**: surface the most frequently needed item first
 
-Parent sections summarize their children. If a heading can't be stated as a conclusion, the section lacks a clear point.
+The underlying rule: don't make the reader dig for the key information.
+
+### 2. Structure Signals Purpose
+
+The organization should immediately tell the reader what they'll get. How headings work depends on the output type:
+
+- **Analytical**: headings state conclusions — `## Revenue declined 12% in Q3`, not `## Revenue`
+- **Instructional / reference**: headings are precise navigation labels — `## Installation`, not `## Getting the software set up`
+
+Either way, a heading should answer "what will I get from reading this section?" If it can't, the section lacks a clear purpose.
 
 ### 3. MECE Grouping
 Organize into 3–5 categories that are mutually exclusive and collectively exhaustive. Overlap signals a structural flaw; gaps signal incomplete analysis.
@@ -46,8 +54,6 @@ Clearly distinguish:
 - **Open question**: what still needs resolution
 
 ## Formatting Rules
-
-**Metadata header**: Open every document with a single line: `Type: <type>  Date: <YYYY-MM-DD>  Topic: <phrase>`. Costs ~10 tokens; allows any reader to orient without parsing the full content.
 
 **Headings**: `#` / `##` / `###` hierarchy. No more than 3 levels in most documents.
 
