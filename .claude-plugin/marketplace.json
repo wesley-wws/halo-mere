@@ -1,10 +1,10 @@
 {
-  "name": "halo-mere",
+  "name": "wesley",
   "owner": {
     "name": "Wesley"
   },
   "metadata": {
-    "description": "Personal workflow toolkit — lightweight, flexible.",
+    "description": "Wesley",
     "version": "0.2.0"
   },
   "plugins": [
