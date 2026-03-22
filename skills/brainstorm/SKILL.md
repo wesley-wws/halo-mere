@@ -2,7 +2,6 @@
 name: brainstorm
 description: This skill should be used when the user is actively exploring a problem, requirement, or design decision and has not yet committed to a direction. Activate for requests like "help me think through X", "I'm not sure which approach to take", "what are my options for Y", "I can't decide between A and B", or "how should I approach Z". Appropriate when the user needs facilitated exploration rather than a direct answer — particularly when the problem involves trade-offs, multiple stakeholders, or unclear constraints. Do not activate when the user is asking a factual question, requesting code generation, or has already decided on an approach and needs implementation help.
 argument-hint: "[optional: brief description of what you want to brainstorm]"
-user-invocable: true
 ---
 
 # Brainstorm Facilitator
