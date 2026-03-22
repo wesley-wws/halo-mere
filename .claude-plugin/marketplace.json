@@ -1,0 +1,24 @@
+{
+  "name": "halo-mere",
+  "owner": {
+    "name": "Wesley"
+  },
+  "metadata": {
+    "description": "Personal workflow toolkit — lightweight, flexible.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "halo-mere",
+      "source": ".",
+      "description": "Personal workflow toolkit — lightweight, flexible.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Wesley"
+      },
+      "homepage": "https://github.com/wesley-wws/halo-mere",
+      "repository": "https://github.com/wesley-wws/halo-mere",
+      "keywords": ["brainstorm", "structured-output", "productivity"]
+    }
+  ]
+}
