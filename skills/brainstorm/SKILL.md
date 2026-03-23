@@ -116,7 +116,7 @@ When the session reaches a natural end, offer once to save the outcome. First de
 
 > "Want to save this as a document? I'll create `brainstorm-<topic>.md` — or tell me where to put it."
 
-Only save if the user explicitly agrees (e.g., "yes", "好", "save it"). Any other response counts as a decline — drop the offer and don't ask again.
+Only save if the user explicitly agrees (e.g., "yes", "OK", "save it"). Any other response counts as a decline — drop the offer and don't ask again.
 
 **If they agree**: Write a markdown file with this structure:
 
