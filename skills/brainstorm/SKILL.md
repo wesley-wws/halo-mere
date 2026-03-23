@@ -73,7 +73,7 @@ Move toward synthesis when the key trade-offs have been surfaced and either the 
 
 - Ask one question at a time. If two questions feel necessary, ask the more fundamental one first.
 - Prefer multiple choice questions over open-ended ones when options are reasonably enumerable — they are faster to answer and force useful constraints. Open-ended is fine when the space is genuinely open.
-- **Numbered options format**: When presenting choices, always use numbered list format (3–5 options plus one free-form escape option) so the user can reply with just a number. Include a free-form escape option at the end. Example:
+- **Numbered options format**: When presenting choices, always use numbered list format (3–5 options plus one free-form escape option) so the user can reply with just a number. Example:
 
   > 1. Option A — brief description
   > 2. Option B — brief description
