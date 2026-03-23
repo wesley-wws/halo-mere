@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-halo-mere is a Claude Code plugin providing personal workflow skills. Version 0.4.0, authored by Wesley. No build system, no runtime dependencies — skills are declarative Markdown files with YAML frontmatter.
+halo-mere is a Claude Code plugin providing personal workflow skills, authored by Wesley. No build system, no runtime dependencies — skills are declarative Markdown files with YAML frontmatter.
 
 ## Architecture
 
@@ -26,7 +26,7 @@ No build, lint, or test commands. Development is editing Markdown skill files di
 
 - **Install plugin locally**: `/plugin marketplace add wesley-wws/halo-mere` then `/plugin install halo-mere@wesley`
 - **Reload after changes**: `/reload-plugins`
-- **Version bumps**: Update `version` in `.claude-plugin/plugin.json`
+- **Version bumps**: `/bump [major|minor|patch]` — updates version in both `plugin.json` and `marketplace.json`
 
 ## Conventions
 
