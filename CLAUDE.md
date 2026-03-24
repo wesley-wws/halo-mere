@@ -17,7 +17,7 @@ halo-mere is a Claude Code plugin providing personal workflow skills, authored b
 
 ## Active Skills
 
-- **`/brainstorm`** — Three-phase guided exploration (extraction → refinement → evaluation). Saves outcomes to `brainstorm-<topic>.md`.
+- **`/brainstorm`** — Three-phase guided exploration (extraction → refinement → evaluation).
 - **`/structured-output`** — Formatting principles for precise output (8 principles, 5 formatting rules, 6 anti-patterns).
 
 ## Development Workflow
