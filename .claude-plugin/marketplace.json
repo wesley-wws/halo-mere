@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Wesley",
-    "version": "0.5.0"
+    "version": "0.5.1"
   },
   "plugins": [
     {
@@ -15,7 +15,7 @@
         "url": "https://github.com/wesley-wws/halo-mere"
       },
       "description": "Personal workflow toolkit — lightweight, flexible.",
-      "version": "0.5.0",
+      "version": "0.5.1",
       "author": {
         "name": "Wesley"
       },
