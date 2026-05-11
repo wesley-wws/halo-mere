@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Wesley",
-    "version": "0.7.0"
+    "version": "0.8.0"
   },
   "plugins": [
     {
@@ -15,13 +15,13 @@
         "url": "https://github.com/wesley-wws/halo-mere"
       },
       "description": "Personal workflow toolkit — lightweight, flexible.",
-      "version": "0.7.0",
+      "version": "0.8.0",
       "author": {
         "name": "Wesley"
       },
       "homepage": "https://github.com/wesley-wws/halo-mere",
       "repository": "https://github.com/wesley-wws/halo-mere",
-      "keywords": ["brainstorm", "structured-output", "retro", "review-backend-arch", "tidy-knowledge", "productivity"]
+      "keywords": ["brainstorm", "structured-output", "retro", "architecture-thinking", "code-decomposition", "karpathy-guidelines", "tidy-knowledge", "productivity"]
     }
   ]
 }

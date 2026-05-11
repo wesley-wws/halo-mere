@@ -10,7 +10,7 @@ Guided brainstorming facilitator. Activates when you're exploring a problem, wei
 
 - Adaptive, conversational exploration across three phases: extraction → refinement → evaluation
 - Surfaces trade-offs rather than jumping to solutions
-- Saves session outcomes to `brainstorm-<topic>.md` for later continuation
+- Resists premature convergence — explicitly asks "is there a perspective we haven't considered yet?" before evaluating
 
 **Trigger examples:** "help me think through X", "I can't decide between A and B", "what are my options for Y"
 
@@ -29,14 +29,40 @@ Session retrospective. Reads the current Claude Code session's `.jsonl` transcri
 
 **Trigger examples:** "retro this session", "复盘一下", "what went wrong this round"
 
-### `/review-backend-arch`
+### `/architecture-thinking`
 
-Engineering-framework-level architecture review for .NET backends. Evaluates solution structure, module boundaries, domain partitioning, and dependency direction — **not** implementation details.
+A guiding skill for framework / architecture design — a way of thinking, not a checklist. Applies in three modes:
 
-- Three review levels: solution, module, boundary
-- Seven scoring dimensions, each 0–100
-- Always produces a "Do Not Change" section to resist over-architecture
-- Manually invoked (not auto-triggered)
+- **Mode A — Reviewing** an existing codebase's structure
+- **Mode B — Designing** a new system or module structure from scratch
+- **Mode C — Debating** a specific decision (split / merge / module placement / boundary)
+
+Built on five principles (Occam's Razor, Dependency Inversion at the Module Level, Entropy Containment, Consistency as Load-Bearing Structure, Don't Reinvent the Wheel), four lenses (intent / dependency direction / location of complexity / pressure of growth), and the disciplines of a senior architect (read the build graph first; identify the intended style before judging; distinguish architecture from implementation; resist new boundaries).
+
+Includes anti-over-flagging calibration notes for .NET, Node/TypeScript (frontend + backend), and iOS/Swift; other stacks fall back to the universal lenses. Project-specific architecture facts ("we use Clean Architecture with X/Y/Z", "our Common module is intentionally narrow") are expected to live in the project's `CLAUDE.md`/`AGENTS.md` — the skill brings the thinking framework, the project brings the project facts. Always produces a "Do Not Change" section in review mode to resist over-architecture.
+
+Auto-triggers on review / design / decision phrasings in both English and Chinese; also user-invocable. **Skill-style** — shapes how the reply is structured and reasoned, replies inline; does not write files.
+
+### `/code-decomposition`
+
+A thinking framework for breaking complex code into focused, composable units. The aim is not to follow rules mechanically but to find the natural seams in the code and cut along them.
+
+- Built around the Single Responsibility question: **"What would cause this unit to change?"** — applied fractally from a three-line function to a 500-line class to an entire module
+- Optional Swift-specific notes where the language's features change the decomposition approach
+- Auto-triggers on refactoring / restructuring / complexity-review requests, and on phrases like "god class", "long method", "extract", "split", "break up", "decompose"
+
+**Trigger examples:** "this class is doing too much", "help me split this", "把这个函数拆一下", "extract a helper from this"
+
+### `/karpathy-guidelines`
+
+Behavioral guidelines to reduce common LLM coding mistakes, derived from [Andrej Karpathy's observations](https://x.com/karpathy/status/2015883857489522876) on LLM coding pitfalls.
+
+- Surface assumptions and trade-offs before coding instead of hiding confusion
+- Prefer surgical changes over broad rewrites
+- Define verifiable success criteria up front
+- Bias: caution over speed — for trivial tasks, use judgment
+
+**When it activates:** writing, reviewing, or refactoring code.
 
 ### `/tidy-knowledge`
 
@@ -87,7 +113,9 @@ Once installed, invoke skills directly in any Claude Code session:
 /brainstorm how should I structure this API?
 /structured-output
 /retro
-/review-backend-arch
+/architecture-thinking
+/code-decomposition
+/karpathy-guidelines
 /tidy-knowledge
 ```
 
