@@ -24,8 +24,11 @@ Covers structural principles (lead with what matters, MECE grouping, logical ord
 
 Session retrospective. Reads the current Claude Code session's `.jsonl` transcript and produces a structured "what went wrong / why / how to improve" report — never modifies any file.
 
+A **procedural skill** (as opposed to the thinking skills like `/brainstorm` and `/architecture-thinking`) — it runs a fixed locate → sample → cluster → report workflow. The algorithmic details (path encoding, sampling anchors, segment detection) live in `references/` files loaded on execution, keeping the main skill body lean.
+
 - Default: retros the segment since the last `/clear`; auto-falls back to the previous segment if you just cleared
 - Flags: `--full` (entire session), `--last` (previous finished session), `<session-id>` (specific session)
+- Auto-triggers on retrospective phrasing in English and Chinese ("retro this session", "what went wrong", "after-action review", "复盘一下", "回顾本次会话", "总结一下问题")
 
 **Trigger examples:** "retro this session", "复盘一下", "what went wrong this round"
 
