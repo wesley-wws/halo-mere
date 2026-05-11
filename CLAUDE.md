@@ -17,6 +17,9 @@ halo-mere is a Claude Code plugin providing personal workflow skills, authored b
 
 - **`/brainstorm`** — Three-phase guided exploration (extraction → refinement → evaluation).
 - **`/structured-output`** — Formatting principles for precise output (8 principles, 5 formatting rules, 6 anti-patterns).
+- **`/retro`** — Session retrospective; reads the current session's jsonl transcript and produces a structured "what went wrong / why / how to improve" report. Report only — never modifies files. Defaults to the segment since the last `/clear`; supports `--full`, `--last`, and `<session-id>`.
+- **`/review-backend-arch`** — Engineering-framework-level architecture review for .NET backends (solution layout, module boundaries, dependency direction). Structure-only; does not review implementations. Manually invoked.
+- **`/tidy-knowledge`** — Editorial pass at pause / handoff / pre-commit moments; reconciles `CLAUDE.md`, `README.md`, and the project's doc surface against the current code. Edits content, surfaces structural recommendations rather than auto-creating sections.
 
 ## Development Workflow
 
