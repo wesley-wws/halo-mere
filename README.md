@@ -40,7 +40,7 @@ Engineering-framework-level architecture review for .NET backends. Evaluates sol
 
 ### `/tidy-knowledge`
 
-Editorial pass over project documentation at natural pause points (before commit, before merge, end of session, handoff). Reconciles `CLAUDE.md`, `README.md`, and the project's doc surface against the current code.
+Editorial pass over project documentation at natural pause points (before commit, before merge, end of session, handoff). Reconciles `CLAUDE.md` / `AGENTS.md`, `README.md`, and the project's doc surface against the current code. Halts if neither agent-facing file exists.
 
 - Edits content; surfaces structural changes as recommendations rather than auto-creating sections
 - Project scope only — does not touch personal memory or global config
