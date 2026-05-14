@@ -1,19 +1,6 @@
 ---
 name: retro
-description: >
-  Procedural skill — runs a fixed locate → sample → cluster → report workflow
-  over the current Claude Code session's jsonl transcript and produces a
-  structured "what went wrong / why / how to improve" report inline. Never
-  writes any file. Defaults to the segment since the last `/clear` (users
-  often `/clear` between unrelated tasks); supports `--full`, `--last`, and
-  `<session-id>` for other scopes. Use this whenever the user asks for a
-  retrospective, after-action review, or session review — in English ("retro
-  this session", "what went wrong", "after-action review", "lessons from this
-  session") or Chinese ("复盘一下", "复盘这次", "复盘上一次", "回顾本次会话",
-  "我们刚才哪里做错了"). A bare "复盘" or "retro" after a meaningful dev
-  segment counts — do not under-trigger. Skip when the user is mid-task
-  asking for help on a current problem; this skill is for after-the-fact
-  analysis only.
+description: Produces a structured "what went wrong / why / how to improve" report from the current Claude Code session — inline, never writes any file. Use when the user asks for a retrospective, after-action review, or session review. Defaults to the segment since the last `/clear`; supports `--full`, `--last`, and `<session-id>`. Skip when the user is mid-task asking for help on a current problem.
 ---
 
 # retro — Session Retrospective

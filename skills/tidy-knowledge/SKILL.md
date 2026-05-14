@@ -1,19 +1,6 @@
 ---
 name: tidy-knowledge
-description: >
-  Editorial pass over project documentation at natural pause points — review
-  CLAUDE.md / AGENTS.md, README.md, and docs/ against the code, reconcile drift, prune
-  cruft, surface structural problems. MUST trigger when the user signals a
-  pause / handoff / milestone moment: "sync up", "tidy docs", "clean up docs",
-  "before commit", "before merge", "ready to ship", "ready for handoff",
-  "/sync", "/neat", "整理文档", "整理一下", "梳理一下", "同步一下", "收尾",
-  "这个阶段做完了", "准备提交", "要 push 了", "merge 之前", "明天有人接手",
-  or any phrase indicating "stop adding code; make sure what's written about
-  it is still true." Bare "整理" / "tidy" with prior dev context counts —
-  do not under-trigger. DO NOT trigger for code-level cleanup such as
-  "refactor function", "tidy imports", "format file", "整理代码",
-  "整理 imports", "格式化". Personal-scope state (memory, global config) is
-  out of scope; this skill only touches project-scope files.
+description: Editorial pass over project documentation at pause/handoff/milestone moments — review CLAUDE.md / AGENTS.md, README.md, and docs/ against the code, reconcile drift, prune cruft, surface structural problems. Trigger on phrases like "tidy docs", "sync up", "before commit", "before merge", "ready to ship", "ready for handoff". Do NOT trigger for code-level cleanup like "refactor function", "tidy imports", "format file". Personal-scope state (memory, global config) is out of scope; this skill only touches project-scope files.
 ---
 
 # Tidy Knowledge — Reconcile Project Writing with Code Reality

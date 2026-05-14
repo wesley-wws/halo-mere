@@ -1,6 +1,6 @@
 ---
 name: code-decomposition
-description: A thinking framework for breaking complex code into focused, composable units — applies fractally from a three-line function to a 500-line class to an entire module. Use whenever the user asks to refactor, restructure, split, extract, decompose, simplify, or review code for complexity. Auto-trigger on phrases like "this class is doing too much", "god class", "long method", "extract a helper", "split this", "break this up", "refactor", "decompose", as well as Chinese phrasings like "这个类太大了", "拆一下", "重构一下", "职责太多", "怎么拆", "抽个方法出来" — even if the user does not use the word "decompose" or "refactor" explicitly. Skill-style — shapes how the reply is structured and reasoned, replies inline; does not write files. Focuses on the non-obvious calls that decide whether a decomposition helps or just redistributes complexity.
+description: A thinking framework for breaking complex code into focused, composable units — applies fractally from a three-line function to a 500-line class to an entire module. Use whenever the user asks to refactor, restructure, split, extract, decompose, simplify, or review code for complexity — e.g. "this class is doing too much", "god class", "long method", "extract a helper", "break this up". Skill-style — shapes how the reply is structured and reasoned, replies inline; does not write files.
 ---
 
 # Code Decomposition Guide

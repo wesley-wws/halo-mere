@@ -1,20 +1,6 @@
 ---
 name: architecture-thinking
-description: >
-  Activate when the user is reviewing the structure of an existing codebase, designing a
-  new system or module layout, or debating a specific architectural decision (should this
-  be split / merged / where this code belongs / where to draw a boundary). Trigger on
-  English phrases like "review the architecture", "should I split this module", "where
-  does this code belong", "I'm starting a new project — how should I structure it",
-  "what's wrong with this layout", and on Chinese phrases like "评审架构", "架构评审",
-  "整体怎么组织", "目录怎么搭", "这块该放哪", "新项目怎么搭目录", "该不该拆",
-  "模块边界". Apply even when the user does not explicitly say "architecture" — any
-  question about project / package / module organization, dependency direction, domain
-  boundaries, or long-term structural soundness counts. A guiding skill, not a checklist:
-  five principles, four lenses, and the disciplines of a senior architect. Includes
-  per-stack calibration notes for .NET, Node/TypeScript (frontend and backend), and
-  iOS/Swift; other stacks fall back to the universal lenses. Skill-style — shapes how the
-  reply is structured and reasoned, replies inline; does not write files.
+description: Activate when reviewing existing codebase structure, designing a new system or module layout, or debating a specific architectural decision — e.g. "should I split this module", "where does this code belong", "review the architecture", "how should I structure this project". Apply to any question about project/package/module organization, dependency direction, domain boundaries, or long-term structural soundness, even without the word "architecture". Skill-style; replies inline, does not write files.
 user-invocable: true
 allowed-tools:
   - Read
