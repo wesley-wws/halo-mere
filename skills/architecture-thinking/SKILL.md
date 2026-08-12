@@ -30,7 +30,7 @@ problems compound with every feature added on top of them.
 
 This skill activates in three contexts, each with a different output shape. Identify the
 mode from the user's request **before** applying the lenses — the mode determines which
-output template (at the end of this file) to produce. The principles, lenses, disciplines,
+output template (in `references/templates.md`) to produce. The principles, lenses, disciplines,
 and stack calibration that follow this section are applied across all three modes; only
 the input shape and the output template differ.
 
@@ -41,7 +41,8 @@ the input shape and the output template differ.
 
 **Flow:**
 
-1. Detect the stack (markers listed under Stack Calibration Notes below).
+1. Detect the stack (marker table under Stack Calibration Notes) and read the matching
+   calibration file it points to.
 2. Spawn an Explore agent to map the build manifests and their declared dependencies,
    top-level folders per project (1-2 levels deep), architecture intent documents
    (CLAUDE.md, AGENTS.md, ADRs, README), and rough file-count distribution.
@@ -56,7 +57,7 @@ the input shape and the output template differ.
 
 **Flow:**
 
-1. Identify the stack (if known) so the calibration notes below apply, and surface other
+1. Identify the stack (if known) and read its calibration file, then surface the other
    constraints: actual scope, realistic growth trajectory, team size. If anything material
    is unknown, ask before recommending.
 2. Apply Occam's Razor first: what's the *minimum* shape that works? Start there.
@@ -72,8 +73,8 @@ module?", "where does this code belong?", "is this doing too much?", "这两个�
 
 **Flow:**
 
-1. Restate the decision precisely, including the stack context if known (the calibration
-   notes below may change the answer).
+1. Restate the decision precisely, including the stack context if known, and read that
+   stack's calibration file — it may change the answer.
 2. Identify the 2-3 principles that bear most directly on this decision — not all five
    will apply to every choice.
 3. Identify the *cost of being wrong* in each direction. Cost asymmetry usually points
@@ -275,17 +276,18 @@ part of making the output usable in their actual workflow.
 
 The principles, lenses, and disciplines above are stack-agnostic. But the model's default
 inclinations on certain dimensions need calibration per stack, or it will over-flag in
-predictable directions. The notes below are *not* a pattern catalog — those facts are in
+predictable directions. The calibration files are *not* pattern catalogs — those facts are in
 the model's training data already. They are guard rails against specific default biases.
 
-Detect the stack from these markers at the repo root:
+Detect the stack from these markers at the repo root, then read the one matching file. Read
+only the one that matches — the others describe biases that don't apply here.
 
-| Repo marker | Stack |
-|-------------|-------|
-| `*.sln` / `*.csproj` | .NET |
-| `package.json` with web framework deps (react, vue, angular, svelte, next, nuxt) | JS/TS frontend |
-| `package.json` with server framework deps (express, nestjs, fastify, koa, hono) | Node/TS backend |
-| `Package.swift` / `*.xcodeproj` / `*.xcworkspace` | iOS / Swift |
+| Repo marker | Stack | Read |
+|-------------|-------|------|
+| `*.sln` / `*.csproj` | .NET | `references/stacks/dotnet.md` |
+| `package.json` with web framework deps (react, vue, angular, svelte, next, nuxt) | JS/TS frontend | `references/stacks/jsts.md` |
+| `package.json` with server framework deps (express, nestjs, fastify, koa, hono) | Node/TS backend | `references/stacks/jsts.md` |
+| `Package.swift` / `*.xcodeproj` / `*.xcworkspace` | iOS / Swift | `references/stacks/swift.md` |
 
 For stacks not listed (JVM, Android, Flutter, Go, Rust, Python, etc.), apply the principles
 and lenses directly and note in the output that no stack-specific calibration was applied.
@@ -296,156 +298,14 @@ use Clean Architecture with X/Y/Z projects", "our Common module is intentionally
 them as part of the discovery step in any mode. This skill brings the thinking framework;
 the project brings the project facts.
 
-### .NET (`.csproj` solutions)
-
-- Most medium-sized .NET backends need only 3-4 source projects. Many .NET solutions are
-  *over-partitioned* because tutorials show 5-7 projects. Recommend consolidation when
-  projects always change together; do not recommend further splits without strong cause.
-- Cross-check `<PackageReference>` alongside `<ProjectReference>` — infrastructure
-  packages (EF Core, ASP.NET Core, message-bus libraries) declared in the wrong project
-  are layer pollution even if no class uses them. The reference itself contaminates.
-- Mixed MediatR vertical-slice and traditional-service patterns in one project without a
-  stated migration direction is a drift signal worth calling out specifically.
-
-### JS/TS (`package.json` — frontend and Node backend)
-
-- JS/TS is the stack where "module boundary" most often means *nothing enforced at all*.
-  Without TypeScript project references or `workspaces`-declared package boundaries,
-  dependency direction is convention-only. Flag this gap explicitly rather than
-  concluding Lens 2 is satisfied just because imports happen to point the right way
-  today.
-- ORM-generated types (Prisma, Drizzle) used as domain entities is the JS/TS equivalent
-  of EF Core in Domain — couples domain to schema and migration cadence. Apply Lens 2
-  the same way as for .NET.
-- Mixed framework conventions (Next.js `pages/` and `app/` coexisting; multiple state-
-  management libraries without a stated strategy) are common drift findings — call them
-  out under Lens 1 even when each pattern is locally fine.
-
-### iOS / Swift
-
-- Many small iOS apps are single-target — that is *correct*, not a finding. The bar for
-  "should this be split into SwiftPM packages?" is higher than for backends because
-  Xcode build-system overhead with many local packages is real. Recommend splitting only
-  when domain complexity, team boundaries, or build-time isolation justifies it.
-- A "modular" Swift project where most types are `public` has *performative* modularity
-  — refactoring is blocked by invisible call sites. Treat `public`-everywhere as
-  effectively no module boundary, regardless of the declared SwiftPM target graph.
-- Singleton service locators (`SomeService.shared`) reached from every module undo
-  whatever dependency direction the package graph declares. Check for these before
-  trusting any Lens 2 conclusion.
-- Storyboards spanning multiple features are a modularization blocker — call this out
-  when a project claims to be modular but ships a `Main.storyboard` with screens from
-  many features.
-
 ---
 
 ## Output Templates
 
-This skill shapes how a reply is *structured and reasoned* — it does not produce file
-artifacts. Output goes inline in the conversation reply. Templates frame the output; the
-*content* comes from applying the principles and lenses. Match the user's language.
+Each mode has its own output shape. Read **`references/templates.md`** once the mode is
+identified, and use only that mode's template.
 
-If the user later asks for the output as a saved file, that's a separate action — do it
-then. Don't pre-emptively write files; this is a thinking skill, not a command.
-
-### Review Template (Mode A)
-
-```
-# Architecture Review — [Stack]
-
-## What this system is trying to be
-
-[One paragraph. The intended architectural style as read from the structure and any
-documentation. If no clear intent is visible, say so explicitly — it's a finding.]
-
-## What's working
-
-[Prose. Where the structure successfully encodes intent, contains complexity, and sets
-up future iteration. Be specific. Reviews that only enumerate problems push teams toward
-over-architecture.]
-
-## What isn't
-
-### [Issue title]
-**Severity:** Blocking / Major / Minor / Drift
-**Affected:** [Which projects / modules / folders]
-**The problem:** [Architecture-level — not code-level]
-**Why it compounds:** [What this will cost over the next N features / months]
-**Structural fix:** [Concrete module-level action]
-
-[Repeat per issue, ordered by severity.]
-
-## Do Not Change
-
-[Required. Explicit list of structural decisions that are adequate and should be defended
-against well-intentioned "improvements." For each, name the tempting change and why it
-would be wrong. Not optional — a review without this section drives over-architecture.]
-
-## Pressure points ahead
-
-[The 1-3 places the architecture will strain first as the project grows. Tie each to a
-specific likely future change.]
-
-## Architecture Guard Rails
-
-[Numbered conventions to prevent the drift identified above. Each phrased as a rule a
-team member could check against in code review.]
-```
-
-### Design Template (Mode B)
-
-```
-# Architectural Guidance — [System / module name]
-
-## Constraints I'm designing against
-
-[Restate scope, growth trajectory, team size, stack as understood. Flag any unknowns.]
-
-## The minimum shape
-
-[The simplest structure that meets the stated requirements. Justified per Occam.]
-
-## Future pressures that shape this
-
-[1-3 realistic future pressures that justify any structure beyond the minimum. Generic
-"what if it scales" anxiety doesn't count.]
-
-## What to add now
-
-[Concrete recommendations beyond the minimum, each tied to a specific future pressure.]
-
-## What NOT to add yet
-
-[Tempting additions to defer until a real pressure justifies them. This is where Occam's
-Razor does most of its work in greenfield design.]
-
-## Anchors
-
-[The 2-4 architectural decisions that, once made, should be defended even as the system
-grows. These are the structure's load-bearing claims.]
-```
-
-### Decision Template (Mode C)
-
-```
-# Architectural Decision — [Restate]
-
-## What the relevant principles say
-
-[List the 2-3 principles that bear most directly on this decision, one sentence each on
-what they imply. Omit principles that don't apply — not every decision touches all five.
-Naming a principle and writing a filler sentence is worse than not naming it.]
-
-- **[Principle name]:** [Implication for this specific decision]
-- **[Principle name]:** [Implication]
-
-## Cost of being wrong each way
-
-- **If we do X and we shouldn't have:** [Concrete cost]
-- **If we don't do X and we should have:** [Concrete cost]
-
-## Recommendation
-
-[The judgment, tied to the principle(s) it rests on and the cost asymmetry that makes it
-the right call.]
-```
+The templates frame the output; the *content* comes from applying the principles and lenses
+above. Output goes inline in the conversation reply — this skill shapes how a reply is
+structured and reasoned, it does not produce file artifacts. If the user later asks for the
+output as a saved file, that's a separate action; don't pre-emptively write files.
