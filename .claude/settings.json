@@ -5,8 +5,7 @@
     ]
   },
   "enabledPlugins": {
-    "skill-creator@claude-plugins-official": true,
     "plugin-dev@claude-plugins-official": true,
-    "halo-mere@wesley": true
+    "skill-creator@claude-plugins-official": true
   }
 }
