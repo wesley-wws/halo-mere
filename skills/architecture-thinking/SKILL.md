@@ -1,11 +1,7 @@
 ---
 name: architecture-thinking
-description: Activate when reviewing existing codebase structure, designing a new system or module layout, or debating a specific structural decision. Apply to any question about project/package/module organization, folder layout, dependency direction, domain boundaries, or long-term structural soundness, even when the word "architecture" never appears. English triggers include "should I split this module", "where does this code belong", "review the architecture", "how should I structure this project", "is this project organized well", "these two projects reference each other". 中文触发例句包括「评审一下这个项目的架构」「这个目录怎么搭」「这两个模块该不该拆」「新项目先搭个架子」「这段代码该放哪」「依赖方向对不对」. Boundary, so the right skill wins: this one owns structure above the type level, meaning projects, packages, modules, folders, and the build-level dependency graph. For splitting a single class, function, or file, use code-decomposition instead. For open-ended exploration that has not yet become a structural question, use brainstorm instead. Skill-style; replies inline, does not write files.
-user-invocable: true
-allowed-tools:
-  - Read
-  - Bash
-  - Agent(Explore)
+description: Activate when reviewing existing codebase structure, designing a new system or module layout, or debating a specific structural decision. Apply to any question about project/package/module organization, folder layout, dependency direction, domain boundaries, or long-term structural soundness, even when the word "architecture" never appears. English triggers include "should I split this module", "where does this code belong", "review the architecture", "how should I structure this project", "is this project organized well", "these two projects reference each other". 中文触发例句包括「评审一下这个项目的架构」「这个目录怎么搭」「这两个模块该不该拆」「新项目先搭个架子」「这段代码该放哪」「依赖方向对不对」. Boundary, so the right skill wins. This one owns structure above the type level, meaning projects, packages, modules, folders, and the build-level dependency graph. For splitting a single class, function, or file, use code-decomposition instead. For open-ended exploration that has not yet become a structural question, use brainstorm instead. Skill-style; replies inline, does not write files.
+allowed-tools: Read, Glob, Grep, Bash, Agent(Explore)
 ---
 
 # Architectural Thinking

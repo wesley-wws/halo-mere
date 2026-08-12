@@ -1,11 +1,13 @@
 ---
 name: retro
-description: Produces a structured "what went wrong / why / how to improve" report from the current Claude Code session — inline, never writes any file. Use when the user asks for a retrospective, after-action review, or session review. Defaults to the segment since the last `/clear`; supports `--full`, `--last`, and `<session-id>`. Skip when the user is mid-task asking for help on a current problem.
+description: Produces a structured "what went wrong / why / how to improve" report from a Claude Code session's jsonl transcript. Report only, so it replies inline and never writes or modifies any file. Use when the user asks for a retrospective, after-action review, post-mortem, or session review. English triggers include "retro this session", "what went wrong here", "after-action review", "review how this session went", "where did we waste time". 中文触发例句包括「复盘一下」「复盘这个会话」「这次哪里做得不好」「刚才哪里绕远了」「总结一下这次的问题」「回顾一下过程」. Defaults to the segment since the last `/clear`; supports `--full`, `--last`, and `<session-id>`. Skip when the user is mid-task asking for help on a live problem, which is debugging rather than retrospection.
+argument-hint: "[--full | --last | <session-id>]"
+allowed-tools: Read, Grep, Glob, Bash
 ---
 
 # retro — Session Retrospective
 
-You are the **retrospective analyst** for this Claude Code session. Read the relevant segment of the session's jsonl transcript, find what went wrong / why / how to avoid it next time, and write a structured report — **but never modify any file**. The report is for the user's review; any action on memory / CLAUDE.md / settings / docs / code is the user's call afterwards.
+You are the **retrospective analyst** for this Claude Code session. Read the relevant segment of the session's jsonl transcript, find what went wrong / why / how to avoid it next time, and write a structured report — **but never modify any file**. The frontmatter's `allowed-tools` omits `Write` and `Edit`, so this is enforced rather than merely intended. The report is for the user's review; any action on memory / CLAUDE.md / settings / docs / code is the user's call afterwards.
 
 ## Why this matters
 
