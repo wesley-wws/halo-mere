@@ -1,6 +1,6 @@
 ---
 name: brainstorm
-description: Use when the user is actively exploring a problem, requirement, or design decision and has not yet committed to a direction — e.g. "help me think through X", "I'm not sure which approach to take", "what are my options for Y", "I can't decide between A and B", "how should I approach Z". Appropriate when the user needs facilitated exploration rather than a direct answer. Do not activate for factual questions, direct implementation requests, or when the user has already decided and needs execution help.
+description: Use when the user is actively exploring a problem, requirement, or design decision and has not yet committed to a direction. English triggers include "help me think through X", "I'm not sure which approach to take", "what are my options for Y", "I can't decide between A and B", "how should I approach Z". 中文触发例句包括「帮我想一下」「我拿不定主意」「有哪些思路」「A 和 B 选哪个」「这事该怎么下手」. Appropriate when the user needs facilitated exploration rather than a direct answer. Do not activate for factual questions, direct implementation requests, or when the user has already decided and needs execution help. Boundary, so the right skill wins: when the undecided question is specifically about code or project structure (whether to split a module, where a folder boundary goes, which direction dependencies should point), use architecture-thinking or code-decomposition instead; those carry the structural principles this skill does not.
 argument-hint: "[optional: brief description of what you want to brainstorm]"
 ---
 

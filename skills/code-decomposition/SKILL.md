@@ -1,6 +1,6 @@
 ---
 name: code-decomposition
-description: A thinking framework for breaking complex code into focused, composable units — applies fractally from a three-line function to a 500-line class to an entire module. Use whenever the user asks to refactor, restructure, split, extract, decompose, simplify, or review code for complexity — e.g. "this class is doing too much", "god class", "long method", "extract a helper", "break this up". Skill-style — shapes how the reply is structured and reasoned, replies inline; does not write files.
+description: A thinking framework for breaking complex code into focused, composable units, applied fractally from a three-line function to a 500-line class to a whole file. Use whenever the user asks to refactor, restructure, split, extract, decompose, simplify, or review code for complexity. English triggers include "this class is doing too much", "god class", "long method", "extract a helper", "break this up", "this function is too long", "too many responsibilities". 中文触发例句包括「这个类拆一下」「职责太多了」「这个方法太长了」「帮我抽个方法」「这段能不能拆开」「重构一下这个文件」. Boundary, so the right skill wins: this one owns responsibility boundaries inside the code being edited, meaning functions, types, and files. For project/package/module layout, folder structure, or the build-level dependency graph, use architecture-thinking instead. Skill-style: shapes how the reply is structured and reasoned, replies inline; does not write files.
 ---
 
 # Code Decomposition Guide
@@ -11,7 +11,7 @@ A thinking framework for breaking complex code into focused, composable units. T
 
 The Single Responsibility Principle boils down to one question: **"What would cause this unit to change?"**
 
-If the answer lists multiple independent reasons — say, a change in business rules AND a change in persistence format — the unit has multiple responsibilities and is a candidate for splitting. This question applies fractally: to a three-line function, a 500-line class, or an entire module.
+If the answer lists multiple independent reasons — say, a change in business rules AND a change in persistence format — the unit has multiple responsibilities and is a candidate for splitting. This question applies fractally: to a three-line function, a 500-line class, or a whole file. Above that level (how modules and packages are laid out, which direction dependencies point) the question is the same but the skill is different: that is architecture-thinking's territory.
 
 A useful companion is the **newspaper test**: can you describe what this unit does in a single sentence without using "and"? If not, it likely does more than one thing.
 

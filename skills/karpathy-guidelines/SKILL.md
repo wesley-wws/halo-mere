@@ -1,6 +1,6 @@
 ---
 name: karpathy-guidelines
-description: Behavioral guidelines to reduce common LLM coding mistakes. Activate when there is risk of over-engineering, unnecessary churn, skipping assumption checks, or vague success criteria — e.g. implementing a feature with unclear scope, making changes that touch more than requested, proposing a solution without surfacing hidden constraints. Biases toward caution; for trivial tasks, use judgment.
+description: Behavioral guidelines that reduce the four most common LLM coding mistakes: acting on silent assumptions, over-engineering, letting changes spill beyond what was asked, and working toward vague success criteria. Consult this before the first edit, not after: activate whenever implementing a feature, fixing a bug, editing existing code, refactoring, or reviewing a proposed implementation. English triggers include "implement X", "add this feature", "fix this bug", "make this work", "review my change". 中文触发例句包括「帮我实现」「加个功能」「改一下这里」「修一下这个 bug」「看看我这个改法」. This is a behavioral overlay: it shapes how the coding work is done rather than replacing it, so it composes with other skills. Biases toward caution over speed; for a one-line or throwaway change, use judgment and skip it.
 license: MIT
 ---
 

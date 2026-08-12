@@ -50,7 +50,7 @@ Auto-triggers on review / design / decision phrasings in both English and Chines
 
 A thinking framework for breaking complex code into focused, composable units. The aim is not to follow rules mechanically but to find the natural seams in the code and cut along them.
 
-- Built around the Single Responsibility question: **"What would cause this unit to change?"** — applied fractally from a three-line function to a 500-line class to an entire module
+- Built around the Single Responsibility question: **"What would cause this unit to change?"** — applied fractally from a three-line function to a 500-line class to a whole file (module-and-above structure belongs to `/architecture-thinking`)
 - Three modes: **Review** (where could this be decomposed?), **Execute** (decompose this for me), **Debate** (is this specific extraction worth it?)
 - Six disciplines that separate careful decomposition from destructive churn — read the whole unit first, refuse to extract clusters you can't name, distinguish complex-single-responsibility from multi-responsibility, reach for the lightest language-native grouping before extracting a new type, match the scope of the user's request, match the user's language
 - Stack-specific anti-biases only where the universal principles don't catch the mistake (currently JS/TS: barrel files masquerading as decomposition, long Node coordinators ≠ god functions). Other stacks fall back to the universal disciplines.
