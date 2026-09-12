@@ -5,23 +5,82 @@
   },
   "metadata": {
     "description": "Wesley",
-    "version": "0.9.0"
+    "version": "0.10.0"
   },
   "plugins": [
     {
       "name": "halo-mere",
-      "source": {
-        "source": "url",
-        "url": "https://github.com/wesley-wws/halo-mere"
-      },
-      "description": "Personal workflow toolkit — lightweight, flexible.",
-      "version": "0.9.0",
+      "source": "./",
+      "strict": false,
+      "description": "Personal workflow toolkit for Claude Code: lightweight, flexible. Everything in one install: the halo-code, halo-think, and halo-flow bundles combined.",
+      "version": "0.10.0",
       "author": {
         "name": "Wesley"
       },
       "homepage": "https://github.com/wesley-wws/halo-mere",
       "repository": "https://github.com/wesley-wws/halo-mere",
-      "keywords": ["brainstorm", "structured-output", "retro", "architecture-thinking", "code-decomposition", "karpathy-guidelines", "tidy-knowledge", "productivity"]
+      "keywords": ["brainstorm", "structured-output", "retro", "architecture-thinking", "code-decomposition", "karpathy-guidelines", "tidy-knowledge", "productivity"],
+      "skills": [
+        "./skills/architecture-thinking",
+        "./skills/code-decomposition",
+        "./skills/karpathy-guidelines",
+        "./skills/brainstorm",
+        "./skills/structured-output",
+        "./skills/retro",
+        "./skills/tidy-knowledge"
+      ]
+    },
+    {
+      "name": "halo-code",
+      "source": "./",
+      "strict": false,
+      "description": "Thinking frameworks for working on code: structure above the type level, decomposition inside it, and guardrails against the common LLM coding mistakes.",
+      "version": "0.10.0",
+      "author": {
+        "name": "Wesley"
+      },
+      "homepage": "https://github.com/wesley-wws/halo-mere",
+      "repository": "https://github.com/wesley-wws/halo-mere",
+      "keywords": ["architecture", "refactoring", "code-review", "decomposition"],
+      "skills": [
+        "./skills/architecture-thinking",
+        "./skills/code-decomposition",
+        "./skills/karpathy-guidelines"
+      ]
+    },
+    {
+      "name": "halo-think",
+      "source": "./",
+      "strict": false,
+      "description": "Exploration and written output: facilitated brainstorming for undecided questions, and formatting principles for writing that gets saved or read downstream.",
+      "version": "0.10.0",
+      "author": {
+        "name": "Wesley"
+      },
+      "homepage": "https://github.com/wesley-wws/halo-mere",
+      "repository": "https://github.com/wesley-wws/halo-mere",
+      "keywords": ["brainstorm", "structured-output", "writing", "productivity"],
+      "skills": [
+        "./skills/brainstorm",
+        "./skills/structured-output"
+      ]
+    },
+    {
+      "name": "halo-flow",
+      "source": "./",
+      "strict": false,
+      "description": "Pause and handoff moments: retrospective reports on a session's transcript, and an editorial pass reconciling project docs against the code.",
+      "version": "0.10.0",
+      "author": {
+        "name": "Wesley"
+      },
+      "homepage": "https://github.com/wesley-wws/halo-mere",
+      "repository": "https://github.com/wesley-wws/halo-mere",
+      "keywords": ["retro", "post-mortem", "documentation", "handoff"],
+      "skills": [
+        "./skills/retro",
+        "./skills/tidy-knowledge"
+      ]
     }
   ]
 }

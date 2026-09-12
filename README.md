@@ -86,7 +86,7 @@ Editorial pass over project documentation at natural pause points (before commit
 
 - [Claude Code](https://claude.ai/claude-code) CLI installed
 
-### Step 1 — Add as a marketplace
+### Step 1: Add as a marketplace
 
 In any Claude Code session, run:
 
@@ -94,15 +94,34 @@ In any Claude Code session, run:
 /plugin marketplace add wesley-wws/halo-mere
 ```
 
-### Step 2 — Install the plugin
+### Step 2: Install a bundle
+
+The seven skills ship as three composable bundles plus an all-in-one. Pick whichever matches the machine or project you are setting up.
+
+| Bundle | Skills | Install when |
+|---|---|---|
+| `halo-code` | `/architecture-thinking`, `/code-decomposition`, `/karpathy-guidelines` | you write code in this project |
+| `halo-think` | `/brainstorm`, `/structured-output` | you explore problems and produce written output |
+| `halo-flow` | `/retro`, `/tidy-knowledge` | you want retrospectives and doc upkeep at pause points |
+| `halo-mere` | all seven | you want everything in one install |
+
+```
+/plugin install halo-code@wesley
+/plugin install halo-think@wesley
+/plugin install halo-flow@wesley
+```
+
+Or, for everything at once:
 
 ```
 /plugin install halo-mere@wesley
 ```
 
-Or use the interactive UI: run `/plugin`, go to the **Discover** tab, and select `halo-mere`.
+Or use the interactive UI: run `/plugin`, go to the **Discover** tab, and pick a bundle.
 
-### Step 3 — Reload
+> **Install `halo-mere` *or* the sub-bundles, not both.** Every bundle reads from the same `skills/` directory, so installing the all-in-one alongside `halo-code` loads two copies of the same skills and duplicates their trigger surface.
+
+### Step 3: Reload
 
 ```
 /reload-plugins

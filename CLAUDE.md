@@ -9,7 +9,7 @@ halo-mere is a Claude Code plugin providing personal workflow skills, authored b
 **Skill-based plugin** following the Claude Code plugin system:
 - Each skill lives in `skills/<skill-name>/SKILL.md`
 - Skills use YAML frontmatter (`name`, `description`, `argument-hint`) + markdown body
-- Plugin metadata in `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`
+- Packaged as **four overlapping bundles** defined entirely in `.claude-plugin/marketplace.json`: `halo-code`, `halo-think`, `halo-flow`, and the all-in-one `halo-mere`. Each entry uses `source: "./"`, `strict: false`, and an explicit `skills` array selecting a subset of the one flat `skills/` directory. There is deliberately **no `.claude-plugin/plugin.json`** (see Conventions)
 - Workspace permissions in `.claude/settings.json` (denies read access to `archived/*`)
 - Archived materials in `archived/` are legacy reference — not active code
 
@@ -27,9 +27,10 @@ halo-mere is a Claude Code plugin providing personal workflow skills, authored b
 
 No build, lint, or test commands. Development is editing Markdown skill files directly.
 
-- **Install plugin locally**: `/plugin marketplace add wesley-wws/halo-mere` then `/plugin install halo-mere@wesley`
+- **Install locally**: `/plugin marketplace add wesley-wws/halo-mere` then `/plugin install halo-code@wesley` (or `halo-think` / `halo-flow` / the all-in-one `halo-mere`)
 - **Reload after changes**: `/reload-plugins`
-- **Version bumps**: `/bump [major|minor|patch]` — updates version in both `plugin.json` and `marketplace.json`
+- **Version bumps**: `/bump [major|minor|patch]` updates `metadata.version` plus all four `plugins[].version` fields in `marketplace.json`. All bundles share one version and release together
+- **Verify a packaging change**: `claude plugin validate .` only checks manifest syntax and will pass on a config that fails to load. Real verification is `claude plugin marketplace add <local copy>` + `claude plugin install <bundle>@<mkt>` + `claude plugin list` (status must read `enabled`) + `claude plugin details <bundle>@<mkt>` (skill count must match the `skills` array)
 
 ## Conventions
 
@@ -38,5 +39,8 @@ No build, lint, or test commands. Development is editing Markdown skill files di
 - Skills use adaptive conversational flow, not rigid templates
 - **Descriptions carry the full trigger surface.** The `description` field is the only part always in context, so every trigger phrase (English *and* Chinese) belongs there, not in the body. Body-only trigger examples never fire.
 - **Frontmatter house standard.** `name` + `description` on every skill. `argument-hint` when the skill accepts arguments (`brainstorm`, `retro`). `allowed-tools` **only** where a capability boundary is worth enforcing rather than merely stated: `retro` (read-only, so `Write`/`Edit` are omitted on purpose) and `architecture-thinking`. Leave it off elsewhere; `allowed-tools` genuinely restricts, so an incomplete list breaks the skill. Do **not** write `user-invocable: true` (both user and model invocation are the default; the field is only useful as `false`). `license` appears on `karpathy-guidelines` alone because its content derives from a third-party source and needs attribution.
-- **Overlapping skills declare a boundary.** Where two skills could both match a phrase, each description names the other and says which owns what. Current boundaries: `/brainstorm` (undecided, non-structural) → `/architecture-thinking` (above the type level: projects, packages, folders, dependency graph) → `/code-decomposition` (inside the code: functions, types, files). `/tidy-knowledge` excludes code-level cleanup.
+- **Overlapping skills declare a boundary, but only name a sibling that ships in the same bundle.** The skill that *owns* a territory claims it concretely. The skill that does *not* own it disclaims it by describing the territory, never by naming the owner: when the owner is loaded its own description already claims the territory, so the name is redundant; when it is not loaded, the name is a dangling pointer that routes the user to a skill they do not have. Naming is therefore allowed only where co-installation is guaranteed (`architecture-thinking` ↔ `code-decomposition`, both in `halo-code`). Cross-bundle deferrals stay abstract: `brainstorm` yields to "whichever loaded skill owns that territory" and falls back to answering directly; `tidy-knowledge` excludes code-level cleanup the same way. Territory map: `/brainstorm` (the method of exploring an undecided question) → `/architecture-thinking` (structure above the type level: projects, packages, folders, dependency graph) → `/code-decomposition` (inside the code: functions, types, files).
+- **No root `plugin.json`.** Bundle identity lives in the marketplace entries. Adding `.claude-plugin/plugin.json` back makes every bundle fail to load with `conflicting manifests: both plugin.json and marketplace entry specify components`, because the root manifest auto-discovers all of `skills/` while each entry declares its own subset. Verified against the same layout Anthropic's `anthropic-agent-skills` marketplace uses.
+- **Bundles are cut by what the skill acts on**, not by topic: `halo-code` (code), `halo-think` (exploration and written output), `halo-flow` (pause/handoff moments). A skill may appear in more than one `skills` array at zero cost, since all entries read the same directory.
+- **Moving a skill between bundles is a description change, not just a manifest change.** A concrete `use <name> instead` clause is only valid while both skills share a bundle; if a move breaks that, rewrite the clause to the abstract form before editing `marketplace.json`.
 - `.gitignore` excludes `*.local.*` files and session-generated markdown
